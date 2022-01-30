@@ -27,22 +27,24 @@ dia = Dia(screen, grupos, personas)
 # Run until the user asks to quit
 running = True
 screen.fill((255, 255, 255))
+print(" día n enfermos proporción")
 while running:
     # Did the user click the window close button?
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        # if event.type == pygame.MOUSEBUTTONDOWN:
-    # click
-    # fondo
-    screen.fill((255, 255, 255))
-    # malla para separar grupos
-    # continuar simulación
-    if dia.estado:
-        dia.primerPaso()
-    else:
-        dia.segundoPaso()
-    util.pintarMalla(ANCHO, ALTO, screen)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # click
+            # fondo
+            screen.fill((255, 255, 255))
+            # malla para separar grupos
+            # continuar simulación
+            if dia.estado:
+                dia.primerPaso()
+            else:
+                dia.segundoPaso()
+                print(dia.dia, n, len(enfermos), len(enfermos)/n)
+            util.pintarMalla(ANCHO, ALTO, screen)
     # flip el display
     pygame.display.flip()
     # finalizar al día 80

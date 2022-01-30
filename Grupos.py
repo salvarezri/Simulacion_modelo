@@ -161,7 +161,7 @@ class Grupo:
         if personasGrupo != 0:
             # verificar proporción
             prop = infectadosGrupo/personasGrupo
-        print("grupo: ", self.tipo, "personas: ", personasGrupo, " infectados: ", infectadosGrupo, " prop: ", prop, " estado: ", self.estado)
+        # print("grupo: ", self.tipo, "personas: ", personasGrupo, " infectados: ", infectadosGrupo, " prop: ", prop, " estado: ", self.estado)
         if prop < 0.33:
             self.estado = 0
         elif prop < 0.66:

@@ -33,7 +33,7 @@ class Dia:
             # pinta las personas
             grupo.pintarPersonas()
         self.estado = True
-        print(self.dia)
+        # print(self.dia)
 
     def reiniciarGrupos(self):
         # pone en 0 todos los grupos
