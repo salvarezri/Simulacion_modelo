@@ -14,6 +14,10 @@ class Dia:
         self.reiniciarGrupos()
         # pinta la nueva disposición de los grupos
         for grupo in self.grupos:
+            # revisa el estado del grupo
+            grupo.verificarProp()
+            grupo.pintarGrupo()
+            # pinta las personas
             grupo.pintarPersonas()
         self.estado = False
 
@@ -23,6 +27,10 @@ class Dia:
             grupo.revisarContagios(self.dia)
         # pinta las nuevas personas contagiadas
         for grupo in self.grupos:
+            # revisa el estado del grupo
+            grupo.verificarProp()
+            grupo.pintarGrupo()
+            # pinta las personas
             grupo.pintarPersonas()
         self.estado = True
         print(self.dia)

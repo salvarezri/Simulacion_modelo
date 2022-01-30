@@ -45,6 +45,9 @@ class Grupo:
         self.overflow = False
         # fuente para texto
         self.fuente = pygame.font.Font(None, 20)
+        # variable que comprueba la proporción de infectados en el grupo
+        # estado = 0 -> pocos; estado = 1 -> medios; estado = 2 -> muchos
+        self.estado = 0
 
     def iniciarPersonas(self) -> None:
         self.personas = []
@@ -71,13 +74,15 @@ class Grupo:
             self.posPersonas[1] += 1
 
     def revisarContagios(self, dia):
+        # se agrega un factor dependiendo de la tasa de contagiados en el grupo
+        factor = 1+(self.estado*0.5)
         # se recorre el arreglo de izq. a der y de arriba a abajo
         for y in range(0, len(self.personas)):
             for x in range(0, len(self.personas[0])):
                 # comprueba si hay persona
                 if not (self.personas[y][x] is None):
                     # calcula si la persona se contagió
-                    if self.personas[y][x].calcularContagio(self._contagio, dia):
+                    if self.personas[y][x].calcularContagio(self._contagio*factor, dia):
                         # si la persona se contagió la agrega a la lista de contagios
                         self.enfermos.append(self.personas[y][x])
 
@@ -107,6 +112,7 @@ class Grupo:
         self.screen.blit(texto,(x,y))
 
     def pintarPersona(self, x, y, persona):
+
         # verifica si hay persona
         if persona is None: return
 
@@ -120,6 +126,48 @@ class Grupo:
             color = 1
         # pinta el circulo
         self.pintarCirculo((centroX, centroY), color, persona.idPersona)
+
+    def pintarGrupo(self):
+        # cambiar color según estado
+        if self.estado == 0:
+            color = (163, 228, 215)
+        elif self.estado == 1:
+            color =(249, 231, 159)
+        else:
+            color = (237, 187, 153)
+        # overflow
+        if self.overflow:
+            color = (44, 62, 80)
+        # pintar el rectangulo
+        pygame.draw.rect(self.screen,color, pygame.Rect(self.pInicial, (self.ancho, self.ancho)))
+
+    def verificarProp(self):
+        # variable que cuenta los infectados que tiene el grupo
+        infectadosGrupo = 0
+        # variable que almacena el total de personas en el grupo
+        personasGrupo = 0
+        # se recorre el arreglo de izq. a der y de arriba a abajo
+        for y in range(0, len(self.personas)):
+            for x in range(0, len(self.personas[0])):
+                # verifica si hay persona
+                if not (self.personas[y][x] is None):
+                    # contar la persona
+                    personasGrupo +=1
+                    # verificar si está enfermo
+                    if self.personas[y][x].estado == 1 :
+                        infectadosGrupo +=1
+        # divion por 0
+        prop = 0
+        if personasGrupo != 0:
+            # verificar proporción
+            prop = infectadosGrupo/personasGrupo
+        print("grupo: ", self.tipo, "personas: ", personasGrupo, " infectados: ", infectadosGrupo, " prop: ", prop, " estado: ", self.estado)
+        if prop < 0.33:
+            self.estado = 0
+        elif prop < 0.66:
+            self.estado = 1
+        else:
+            self.estado = 2
 
     def pintarPersonas(self):
         # se recorre el arreglo de izq. a der y de arriba a abajo

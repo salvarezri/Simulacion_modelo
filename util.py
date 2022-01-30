@@ -22,15 +22,15 @@ def crearGrupos(ancho, alto, enfermos, screen) -> list[Grupo]:
     # grupo 1 0.33
     grupos.append(Grupo(1, 0.33, enfermos, columnas, filas, (0, 0), anchoG, altoG, screen))
     # grupo 2 0.58
-    grupos.append(Grupo(1, 0.58, enfermos, columnas, filas, (ancho / 3, 0), anchoG, altoG, screen))
+    grupos.append(Grupo(2, 0.58, enfermos, columnas, filas, (ancho / 3, 0), anchoG, altoG, screen))
     # grupo 3 0.78
-    grupos.append(Grupo(1, 0.78, enfermos, columnas, filas, (2 * (ancho / 3), 0), anchoG, altoG, screen))
+    grupos.append(Grupo(3, 0.78, enfermos, columnas, filas, (2 * (ancho / 3), 0), anchoG, altoG, screen))
     # grupo 4 0.89
-    grupos.append(Grupo(1, 0.89, enfermos, columnas, filas, (0, alto / 2), anchoG, altoG, screen))
+    grupos.append(Grupo(4, 0.89, enfermos, columnas, filas, (0, alto / 2), anchoG, altoG, screen))
     # grupo 5 0.95
-    grupos.append(Grupo(1, 0.95, enfermos, columnas, filas, (ancho / 3, alto / 2), anchoG, altoG, screen))
+    grupos.append(Grupo(5, 0.95, enfermos, columnas, filas, (ancho / 3, alto / 2), anchoG, altoG, screen))
     # grupo 6 1
-    grupos.append(Grupo(1, 1, enfermos, columnas, filas, (2 * (ancho / 3), alto / 2), anchoG, altoG, screen))
+    grupos.append(Grupo(6, 1, enfermos, columnas, filas, (2 * (ancho / 3), alto / 2), anchoG, altoG, screen))
     return grupos
 
 

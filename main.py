@@ -36,12 +36,12 @@ while running:
             # fondo
             screen.fill((255, 255, 255))
             # malla para separar grupos
-            util.pintarMalla(ANCHO, ALTO, screen)
             # continuar simulación
             if dia.estado:
                 dia.primerPaso()
             else:
                 dia.segundoPaso()
+            util.pintarMalla(ANCHO, ALTO, screen)
     # flip el display
     pygame.display.flip()
 
