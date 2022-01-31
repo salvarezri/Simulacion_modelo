@@ -3,7 +3,6 @@ from Grupos import Grupo
 from Persona import Persona
 from  Dia import Dia
 import util
-import random
 
 
 pygame.init()
@@ -27,7 +26,7 @@ dia = Dia(screen, grupos, personas)
 # Run until the user asks to quit
 running = True
 screen.fill((255, 255, 255))
-print(" día n enfermos proporción")
+print("día n enfermos proporción")
 while running:
     # Did the user click the window close button?
     for event in pygame.event.get():
